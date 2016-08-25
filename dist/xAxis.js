@@ -68,7 +68,7 @@ if(i%stepsBetweenVerticalLines!==0)return null;
 var item=transform(d[0]);
 if(typeof item!=='number'&&!item)return null;
 return(
-_react2.default.createElement(_reactNative.TouchableOpacity,{
+_react2.default.createElement(_reactNative.TouchableWithoutFeedback,{
 key:i,
 onPress:function onPress(e){return _this2._handlePress(e,d,i);}},
 

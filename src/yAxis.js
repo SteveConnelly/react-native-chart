@@ -1,6 +1,6 @@
 /* @flow */
 import React, { Component, PropTypes } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { uniqueValuesInDataSet } from './util';
 
 const styles = StyleSheet.create({
@@ -24,7 +24,8 @@ export default class YAxis extends Component<void, any, any> {
 		placement: PropTypes.oneOf(['left', 'right']),
 		verticalGridStep: PropTypes.number.isRequired,
 		yAxisTransform: PropTypes.func,
-		yAxisUseDecimal: PropTypes.bool
+		yAxisUseDecimal: PropTypes.bool,
+		onYAxisLabelPress: PropTypes.func
 	};
 
 	static defaultProps : any = {
@@ -56,16 +57,29 @@ export default class YAxis extends Component<void, any, any> {
 			label = this.props.yAxisTransform(label);
 		}
 		return (
-			<Text
-				style={{
-					color: this.props.axisLabelColor,
-					fontSize: this.props.labelFontSize,
-				}}
+			<TouchableWithoutFeedback
 				key={index}
+				onPress={(e) => this._handlePress(e, index)}
 			>
-				{label}
-			</Text>
+				<View>
+					<Text
+						style={{
+							color: this.props.axisLabelColor,
+							fontSize: this.props.labelFontSize,
+						}}
+						key={index}
+					>
+						{label}
+					</Text>
+				</View>
+			</TouchableWithoutFeedback>
 		);
+	};
+
+	_handlePress = (e : Object, index : number) => {
+		if (this.props.onYAxisLabelPress) {
+			this.props.onYAxisLabelPress(e, index);
+		}
 	};
 
 	render() {
