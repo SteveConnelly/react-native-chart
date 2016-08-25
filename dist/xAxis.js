@@ -16,7 +16,7 @@ backgroundColor:'transparent'}});var
 
 
 
-XAxis=function(_Component){_inherits(XAxis,_Component);function XAxis(){_classCallCheck(this,XAxis);return _possibleConstructorReturn(this,Object.getPrototypeOf(XAxis).apply(this,arguments));}_createClass(XAxis,[{key:'render',value:function render()
+XAxis=function(_Component){_inherits(XAxis,_Component);function XAxis(){var _ref;var _temp,_this,_ret;_classCallCheck(this,XAxis);for(var _len=arguments.length,args=Array(_len),_key=0;_key<_len;_key++){args[_key]=arguments[_key];}return _ret=(_temp=(_this=_possibleConstructorReturn(this,(_ref=XAxis.__proto__||Object.getPrototypeOf(XAxis)).call.apply(_ref,[this].concat(args))),_this),_this.
 
 
 
@@ -34,6 +34,13 @@ XAxis=function(_Component){_inherits(XAxis,_Component);function XAxis(){_classCa
 
 
 
+
+
+_handlePress=function(e,dataPoint,index){
+if(_this.props.onXAxisLabelPress){
+_this.props.onXAxisLabelPress(e,dataPoint,index);
+}
+},_temp),_possibleConstructorReturn(_this,_ret);}_createClass(XAxis,[{key:'render',value:function render()
 
 {var _this2=this;
 var data=this.props.data||[];
@@ -61,6 +68,11 @@ if(i%stepsBetweenVerticalLines!==0)return null;
 var item=transform(d[0]);
 if(typeof item!=='number'&&!item)return null;
 return(
+_react2.default.createElement(_reactNative.TouchableOpacity,{
+key:i,
+onPress:function onPress(e){return _this2._handlePress(e,d,i);}},
+
+_react2.default.createElement(_reactNative.View,null,
 _react2.default.createElement(_reactNative.Text,{
 key:i,
 style:[
@@ -71,10 +83,12 @@ color:_this2.props.axisLabelColor,
 fontSize:_this2.props.labelFontSize}]},
 
 
-item));
+item))));
+
+
 
 });
 }()));
 
 
-}}]);return XAxis;}(_react.Component);XAxis.propTypes={axisColor:_react.PropTypes.any.isRequired,axisLabelColor:_react.PropTypes.any.isRequired,axisLineWidth:_react.PropTypes.number.isRequired,data:_react.PropTypes.arrayOf(_react.PropTypes.array),showXAxisLabels:_react.PropTypes.bool.isRequired,style:_react.PropTypes.any,width:_react.PropTypes.number.isRequired,align:_react.PropTypes.string,labelFontSize:_react.PropTypes.number.isRequired,xAxisTransform:_react.PropTypes.func,horizontalGridStep:_react.PropTypes.number};XAxis.defaultProps={align:'center'};exports.default=XAxis;
+}}]);return XAxis;}(_react.Component);XAxis.propTypes={axisColor:_react.PropTypes.any.isRequired,axisLabelColor:_react.PropTypes.any.isRequired,axisLineWidth:_react.PropTypes.number.isRequired,data:_react.PropTypes.arrayOf(_react.PropTypes.array),showXAxisLabels:_react.PropTypes.bool.isRequired,style:_react.PropTypes.any,width:_react.PropTypes.number.isRequired,align:_react.PropTypes.string,labelFontSize:_react.PropTypes.number.isRequired,xAxisTransform:_react.PropTypes.func,horizontalGridStep:_react.PropTypes.number,onXAxisLabelPress:_react.PropTypes.func};XAxis.defaultProps={align:'center'};exports.default=XAxis;

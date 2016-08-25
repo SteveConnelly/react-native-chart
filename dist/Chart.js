@@ -56,7 +56,7 @@ Chart=function(_Component){_inherits(Chart,_Component);
 
 
 
-function Chart(props){_classCallCheck(this,Chart);var _this=_possibleConstructorReturn(this,Object.getPrototypeOf(Chart).call(this,
+function Chart(props){_classCallCheck(this,Chart);var _this=_possibleConstructorReturn(this,(Chart.__proto__||Object.getPrototypeOf(Chart)).call(this,
 props));_this.
 
 
