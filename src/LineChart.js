@@ -1,6 +1,6 @@
 /* @flow */
 import React, { Component } from 'react';
-import { Animated, ART, View, Platform } from 'react-native';
+import { Animated, ART, View, Platform, TouchableWithoutFeedback } from 'react-native';
 const { Surface, Shape, Path } = ART;
 import * as C from './constants';
 import Circle from './Circle';
@@ -39,6 +39,12 @@ export default class LineChart extends Component<void, any, any> {
 			Animated.timing(this.state.opacity, { duration: this.props.animationDuration, toValue: 1 }).start();
 		}
 	}
+
+	_handlePress = (e) => {
+		if (this.props.onLineChartPress) {
+			this.props.onLineChartPress(e);
+		}
+	};
 
 	_drawLine = () => {
 		const containerHeight = this.props.height;
@@ -97,9 +103,15 @@ export default class LineChart extends Component<void, any, any> {
 				{(() => {
 					if (!this.props.showDataPoint) return null;
 					return (
-						<Surface width={containerWidth} height={containerHeight}>
-							{dataPoints.map((d, i) => <Circle key={i} {...d} />)}
-						</Surface>
+						<TouchableWithoutFeedback onPress={this._handlePress}>
+							<View>
+								<Surface width={containerWidth} height={containerHeight}>
+									{dataPoints.map((d, i) =>
+											<Circle key={i} {...d} />
+									)}
+								</Surface>
+							</View>
+						</TouchableWithoutFeedback>
 					);
 				})()}
 			</View>
