@@ -40,6 +40,12 @@ props));_this.
 
 
 
+_handlePress=function(e){
+if(_this.props.onLineChartPress){
+_this.props.onLineChartPress(e);
+}
+};_this.
+
 _drawLine=function(){
 var containerHeight=_this.props.height;
 var containerWidth=_this.props.width;
@@ -97,8 +103,14 @@ _react2.default.createElement(Surface,{width:containerWidth,height:containerHeig
 function(){
 if(!_this.props.showDataPoint)return null;
 return(
+_react2.default.createElement(_reactNative.TouchableWithoutFeedback,{onPress:_this._handlePress},
+_react2.default.createElement(_reactNative.View,null,
 _react2.default.createElement(Surface,{width:containerWidth,height:containerHeight},
-dataPoints.map(function(d,i){return _react2.default.createElement(_Circle2.default,_extends({key:i},d));})));
+dataPoints.map(function(d,i){return(
+_react2.default.createElement(_Circle2.default,_extends({key:i},d)));})))));
+
+
+
 
 
 }()));
