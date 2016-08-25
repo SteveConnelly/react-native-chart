@@ -31,6 +31,7 @@ YAxis=function(_Component){_inherits(YAxis,_Component);
 
 
 
+
 function YAxis(props){_classCallCheck(this,YAxis);var _this=_possibleConstructorReturn(this,(YAxis.__proto__||Object.getPrototypeOf(YAxis)).call(this,
 props));_this.
 
@@ -56,6 +57,11 @@ if(_this.props.yAxisTransform&&typeof _this.props.yAxisTransform==='function'){
 label=_this.props.yAxisTransform(label);
 }
 return(
+_react2.default.createElement(_reactNative.TouchableWithoutFeedback,{
+key:index,
+onPress:function onPress(e){return _this._handlePress(e,index);}},
+
+_react2.default.createElement(_reactNative.View,null,
 _react2.default.createElement(_reactNative.Text,{
 style:{
 color:_this.props.axisLabelColor,
@@ -63,9 +69,17 @@ fontSize:_this.props.labelFontSize},
 
 key:index},
 
-label));
+label))));
 
 
+
+
+};_this.
+
+_handlePress=function(e,index){
+if(_this.props.onYAxisLabelPress){
+_this.props.onYAxisLabelPress(e,index);
+}
 };_this.state={bounds:{min:0,max:0}};return _this;}_createClass(YAxis,[{key:'render',value:function render()
 
 {
@@ -86,4 +100,4 @@ this.props.placement==='right'&&{borderLeftColor:this.props.axisColor,borderLeft
 range.map(this._createLabelForYAxis)));
 
 
-}}]);return YAxis;}(_react.Component);YAxis.propTypes={axisColor:_react.PropTypes.any,axisLineWidth:_react.PropTypes.number,data:_react.PropTypes.arrayOf(_react.PropTypes.array).isRequired,height:_react.PropTypes.number.isRequired,placement:_react.PropTypes.oneOf(['left','right']),verticalGridStep:_react.PropTypes.number.isRequired,yAxisTransform:_react.PropTypes.func,yAxisUseDecimal:_react.PropTypes.bool};YAxis.defaultProps={placement:'left'};exports.default=YAxis;
+}}]);return YAxis;}(_react.Component);YAxis.propTypes={axisColor:_react.PropTypes.any,axisLineWidth:_react.PropTypes.number,data:_react.PropTypes.arrayOf(_react.PropTypes.array).isRequired,height:_react.PropTypes.number.isRequired,placement:_react.PropTypes.oneOf(['left','right']),verticalGridStep:_react.PropTypes.number.isRequired,yAxisTransform:_react.PropTypes.func,yAxisUseDecimal:_react.PropTypes.bool,onYAxisLabelPress:_react.PropTypes.func};YAxis.defaultProps={placement:'left'};exports.default=YAxis;

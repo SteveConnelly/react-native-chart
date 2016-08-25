@@ -1,7 +1,7 @@
 /* @flow */
 'use strict';
 import React, { Component, PropTypes } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableWithoutFeedback} from 'react-native';
 
 const styles = StyleSheet.create({
 	xAxisContainer: {
@@ -68,7 +68,7 @@ export default class XAxis extends Component {
 					const item = transform(d[0]);
 					if (typeof item !== 'number' && !item) return null;
 					return (
-						<TouchableOpacity
+						<TouchableWithoutFeedback
 							key={i}
 							onPress={(e) => this._handlePress(e, d, i)}
 						>
@@ -85,7 +85,7 @@ export default class XAxis extends Component {
 									]}
 								>{item}</Text>
 							</View>
-						</TouchableOpacity>
+						</TouchableWithoutFeedback>
 				);
 				});
 			})()}
