@@ -19,7 +19,7 @@ var heightZero=_reactNative.Platform.OS==='ios'?0:1;var
 
 LineChart=function(_Component){_inherits(LineChart,_Component);
 
-function LineChart(props){_classCallCheck(this,LineChart);var _this=_possibleConstructorReturn(this,Object.getPrototypeOf(LineChart).call(this,
+function LineChart(props){_classCallCheck(this,LineChart);var _this=_possibleConstructorReturn(this,(LineChart.__proto__||Object.getPrototypeOf(LineChart)).call(this,
 props));_this.
 
 

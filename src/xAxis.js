@@ -1,7 +1,7 @@
 /* @flow */
 'use strict';
 import React, { Component, PropTypes } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 const styles = StyleSheet.create({
 	xAxisContainer: {
@@ -30,9 +30,16 @@ export default class XAxis extends Component {
 		labelFontSize: PropTypes.number.isRequired,
 		xAxisTransform: PropTypes.func,
 		horizontalGridStep: PropTypes.number,
+		onXAxisLabelPress: PropTypes.func
 	};
 	static defaultProps = {
 		align: 'center',
+	};
+
+	_handlePress = (e : Object, dataPoint : number, index : number) => {
+		if (this.props.onXAxisLabelPress) {
+			this.props.onXAxisLabelPress(e, dataPoint, index);
+		}
 	};
 
 	render() {
@@ -61,17 +68,24 @@ export default class XAxis extends Component {
 					const item = transform(d[0]);
 					if (typeof item !== 'number' && !item) return null;
 					return (
-						<Text
+						<TouchableOpacity
 							key={i}
-							style={[
-								styles.axisText,
-								{
-									textAlign: this.props.align,
-									color: this.props.axisLabelColor,
-									fontSize: this.props.labelFontSize,
-								},
-							]}
-						>{item}</Text>
+							onPress={(e) => this._handlePress(e, d, i)}
+						>
+							<View>
+								<Text
+									key={i}
+									style={[
+										styles.axisText,
+										{
+											textAlign: this.props.align,
+											color: this.props.axisLabelColor,
+											fontSize: this.props.labelFontSize,
+										},
+									]}
+								>{item}</Text>
+							</View>
+						</TouchableOpacity>
 				);
 				});
 			})()}

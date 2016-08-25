@@ -14,7 +14,7 @@ justifyContent:'space-around'}});var
 
 
 BarChart=function(_Component){_inherits(BarChart,_Component);
-function BarChart(props){_classCallCheck(this,BarChart);var _this=_possibleConstructorReturn(this,Object.getPrototypeOf(BarChart).call(this,
+function BarChart(props){_classCallCheck(this,BarChart);var _this=_possibleConstructorReturn(this,(BarChart.__proto__||Object.getPrototypeOf(BarChart)).call(this,
 props));_this.
 
 
